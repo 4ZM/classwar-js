@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name classwarApp
- * @description
- * # classwarApp
- *
- * Main module of the application.
- */
 angular
   .module('classwarApp', [
     'ngResource',
@@ -17,12 +9,12 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/overview.html',
+        controller: 'OverviewCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/actions', {
+        templateUrl: 'views/actions.html',
+        controller: 'ActionsCtrl'
       })
       .otherwise({
         redirectTo: '/'

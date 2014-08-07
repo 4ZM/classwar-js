@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: ActionsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('classwarApp'));
 
-  var MainCtrl,
+  var ActionsCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    AboutCtrl = $controller('ActionsCtrl', {
       $scope: scope
     });
   }));
