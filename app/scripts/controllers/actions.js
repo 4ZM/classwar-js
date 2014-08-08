@@ -7,4 +7,6 @@ angular.module('classwarApp')
       'AngularJS',
       'Karma'
     ];
+
+    $scope.allActions = CLASSWAR.ACTIONS.all();
   });

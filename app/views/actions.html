@@ -1,1 +1,19 @@
-<p>This is the actions view.</p>
+<table class="table table-hover">
+    <thead><tr>
+        <th>Action</th>
+        <th style="width:10%">Activists</th>
+        <th style="width:10%">Moneyz</th>
+    </tr></thead>
+    <tbody>
+        <tr ng-repeat="action in allActions">
+            <td>{{action.name}}</td>
+            <td class="text-right" style="width:10%">{{action.effort}}</td>
+            <td class="text-right" style="width:10%">{{action.cost}}</td>
+        </tr>
+    </tbody>
+    <tfoot><tr>
+        <th>Sum</th>
+        <th class="text-right" style="width:10%">xx</th>
+        <th class="text-right" style="width:10%">xx</th>
+    </tr></tfoot>
+</table>
