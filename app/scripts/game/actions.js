@@ -21,7 +21,6 @@ var CLASSWAR = (function (cw) {
         }
     }
 
-
     cwa.isStaged = function(g, a) {
         return g.stagedActions.indexOf(a) > -1;
     }

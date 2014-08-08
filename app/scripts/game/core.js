@@ -3,6 +3,7 @@ var CLASSWAR = (function (cw) {
   var state = {
     day: 0,
     activists: 5,
+    money: 1000,
     stagedActions: [],
     status: "running"
   };

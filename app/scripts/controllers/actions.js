@@ -4,12 +4,12 @@ angular.module('classwarApp')
   .controller('ActionsCtrl', function ($scope) {
 
     $scope.stageAction = function(a) {
-        CLASSWAR.state = CLASSWAR.ACTIONS.stageAction($scope.state, a);
+        CLASSWAR.state = CLASSWAR.ACTIONS.stageAction(CLASSWAR.state, a);
         refreshStaged();
     };
 
     $scope.unstageAction = function(a) {
-        CLASSWAR.state = CLASSWAR.ACTIONS.unstageAction($scope.state, a);
+        CLASSWAR.state = CLASSWAR.ACTIONS.unstageAction(CLASSWAR.state, a);
         refreshStaged();
     };
 
