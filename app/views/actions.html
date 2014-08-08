@@ -3,17 +3,45 @@
         <th>Action</th>
         <th style="width:10%">Activists</th>
         <th style="width:10%">Moneyz</th>
+        <th style="width:10%"></th>
     </tr></thead>
     <tbody>
-        <tr ng-repeat="action in allActions">
+        <tr ng-repeat="action in unstagedActions">
             <td>{{action.name}}</td>
             <td class="text-right" style="width:10%">{{action.effort}}</td>
             <td class="text-right" style="width:10%">{{action.cost}}</td>
+            <td class="text-right" style="width:10%">
+                <a href ng-click="stageAction(action)">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-hover">
+    <thead><tr>
+        <th>Staged Action</th>
+        <th style="width:10%">Activists</th>
+        <th style="width:10%">Moneyz</th>
+        <th style="width:10%"></th>
+    </tr></thead>
+    <tbody>
+        <tr ng-repeat="action in stagedActions">
+            <td>{{action.name}}</td>
+            <td class="text-right" style="width:10%">{{action.effort}}</td>
+            <td class="text-right" style="width:10%">{{action.cost}}</td>
+            <td class="text-right" style="width:10%">
+                <a href ng-click="unstageAction(action)">
+                    <i class="glyphicon glyphicon-minus"></i>
+                </a>
+            </td>
         </tr>
     </tbody>
     <tfoot><tr>
         <th>Sum</th>
-        <th class="text-right" style="width:10%">xx</th>
-        <th class="text-right" style="width:10%">xx</th>
+        <th class="text-right" style="width:10%">{{stagedEffort|number}}</th>
+        <th class="text-right" style="width:10%">{{stagedCost|number}}</th>
+        <th style="width:10%"></th>
     </tr></tfoot>
 </table>
