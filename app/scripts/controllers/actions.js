@@ -2,50 +2,26 @@
 
 angular.module('classwarApp')
   .controller('ActionsCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
-    $scope.allActions = CLASSWAR.ACTIONS.all();
-    $scope.unstagedActions = CLASSWAR.ACTIONS.all();
-    $scope.stagedActions = [];
-    $scope.stagedEffort = 0;
-    $scope.stagedCost = 0;
 
     $scope.stageAction = function(a) {
-        var index = $scope.unstagedActions.indexOf(a);
-        if (index > -1) {
-            $scope.unstagedActions.splice(index, 1);
-        }
-        $scope.stagedActions.push(a);
-        $scope.stagedCost = stagedCost();
-        $scope.stagedEffort = stagedEffort();
+        CLASSWAR.state = CLASSWAR.ACTIONS.stageAction($scope.state, a);
+        refreshStaged();
     };
 
     $scope.unstageAction = function(a) {
-        var index = $scope.stagedActions.indexOf(a);
-        if (index > -1) {
-            $scope.stagedActions.splice(index, 1);
-        }
-        $scope.unstagedActions.push(a);
-        $scope.stagedCost = stagedCost();
-        $scope.stagedEffort = stagedEffort();
+        CLASSWAR.state = CLASSWAR.ACTIONS.unstageAction($scope.state, a);
+        refreshStaged();
     };
 
-    var stagedCost = function() {
-        var acc = 0;
-        for (var i = 0; i < $scope.stagedActions.length; ++i) {
-            acc += $scope.stagedActions[i].cost || 0;
-        }
-        return acc;
+    // Private impl
+    var refreshStaged = function() {
+        $scope.state = CLASSWAR.state;
+        $scope.stagedActions = CLASSWAR.ACTIONS.stagedActions($scope.state);
+        $scope.unstagedActions = CLASSWAR.ACTIONS.unstagedActions($scope.state);
+        $scope.stagedCost = CLASSWAR.ACTIONS.stagedCost($scope.state);
+        $scope.stagedEffort = CLASSWAR.ACTIONS.stagedEffort($scope.state);
     };
-    var stagedEffort = function() {
-        var acc = 0;
-        for (var i = 0; i < $scope.stagedActions.length; ++i) {
-            acc += $scope.stagedActions[i].effort || 0;
-        }
-        return acc;
-    };
+
+    // Controller init
+    refreshStaged();
 });
