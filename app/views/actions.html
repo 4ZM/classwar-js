@@ -1,8 +1,8 @@
 <div class="row">
-    <div class="col-md-3">
+    <div ng-class="state.activists - stagedEffort < 0 ? 'text-danger' : 'text-default'" class="col-md-3">
         Activists: {{state.activists - stagedEffort|number}}
     </div>
-    <div class="col-md-3">
+    <div ng-class="state.money - stagedCost < 0 ? 'text-danger' : 'text-default'" class="col-md-3">
         Money: {{state.money - stagedCost|number}}
     </div>
     <div class="col-md-3">
