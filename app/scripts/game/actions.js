@@ -2,11 +2,22 @@ var CLASSWAR = (function (cw) {
   var ACTIONS = (function (cwa) {
 
     var flyers = {
-        name: "Flyers",
-        effort: 2,
-        cost: 10,
+      name: "Flyers",
+      effort: 2,
+      cost: 10,
         op: function(g) {
             console.log("Running Flyers action");
+            return g;
+        }
+    }
+
+    var stickers = {
+      name: "Stickers",
+      effort: 2,
+      duration: 2,
+      cost: 10,
+        op: function(g) {
+            console.log("Stickers running");
             return g;
         }
     }
@@ -14,7 +25,6 @@ var CLASSWAR = (function (cw) {
     var demo = {
         name: "Demo",
         effort: 20,
-        //cost: 10,
         op: function(g) {
             console.log("Running Demo action");
             return g;
@@ -62,6 +72,7 @@ var CLASSWAR = (function (cw) {
         }
         return acc;
     };
+
     cwa.stagedEffort = function(g) {
         var acc = 0;
         for (var i = 0; i < g.stagedActions.length; ++i) {
@@ -72,6 +83,7 @@ var CLASSWAR = (function (cw) {
 
     cwa.allActions = function() {
         return [flyers,
+                stickers,
                 demo];
     };
 
