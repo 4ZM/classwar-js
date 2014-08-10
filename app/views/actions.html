@@ -1,3 +1,8 @@
+<div class="row text-center">
+  <button ng-click="tic()" class="btn btn-success">TIC {{state.day}}</button>
+</div>
+<hr/>
+
 <div class="row">
     <div ng-class="state.activists - stagedEffort < 0 ? 'text-danger' : 'text-default'" class="col-md-3">
         Activists: {{state.activists - stagedEffort|number}}
@@ -67,10 +72,3 @@
 </table>
 </div>
 </div>
-
-<hr/>
-
-<div class="row text-center">
-  <button ng-click="tic()" class="btn btn-success">TIC {{state.day}}</button>
-</div>
-<br/>

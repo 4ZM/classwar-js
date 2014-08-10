@@ -14,7 +14,7 @@ var CLASSWAR = (function (cw) {
 
     // Commit the staged actions
     while (g.stagedActions.length > 0) {
-      a = g.stagedActions.shift();
+      var a = g.stagedActions.shift();
       a.startDay = g.day;
       g.money -= a.cost;
       g.runningActions.push(a);
@@ -22,14 +22,15 @@ var CLASSWAR = (function (cw) {
 
     // Run the actions
     for (i = 0; i < g.runningActions.length; ++i) {
-      g.runningActions[i].op(g);
+      a = g.runningActions[i];
+      a.op(g, a);
     }
 
     // Remove expired actions
     var keep = [];
     while (g.runningActions.length > 0) {
       a = g.runningActions.shift();
-      if (g.day < (a.startDay + (a.duration || 1) - 1))
+      if (g.day < cw.ACTIONS.endDay(a))
         keep.push(a);
     }
     g.runningActions = keep;
@@ -37,7 +38,7 @@ var CLASSWAR = (function (cw) {
     // Advance day
     g.day = g.day + 1;
     return g;
-  }
+  };
 
   return cw;
 }(CLASSWAR || {}));

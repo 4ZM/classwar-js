@@ -1,54 +1,62 @@
 var CLASSWAR = (function (cw) {
   var ACTIONS = (function (cwa) {
 
+    cwa.endDay = function(a) {
+      return a.startDay + (a.duration || 1) - 1;
+    };
+
     var flyers = {
       name: "Flyers",
       effort: 2,
       cost: 10,
-        op: function(g) {
+        op: function(g, a) {
             console.log("Running Flyers action");
             return g;
         }
-    }
+    };
 
     var stickers = {
       name: "Stickers",
       effort: 2,
-      duration: 2,
+      duration: 3,
       cost: 10,
-        op: function(g) {
-            console.log("Stickers running");
+        op: function(g, a) {
+          if (g.day === a.startDay)
+            console.log("First day");
+          console.log("Stickers running : everyday");
+          if (g.day === cwa.endDay(a))
+            console.log("Last day");
             return g;
         }
-    }
+    };
 
     var demo = {
         name: "Demo",
         effort: 20,
-        op: function(g) {
+        op: function(g, a) {
             console.log("Running Demo action");
             return g;
         }
-    }
+    };
 
     cwa.isStaged = function(g, a) {
         return g.stagedActions.indexOf(a) > -1;
-    }
+    };
 
     cwa.stagedActions = function(g) {
         return g.stagedActions;
-    }
+    };
 
     cwa.unstagedActions = function(g) {
         var unstaged = [];
         var all = cwa.allActions();
         for (var i = 0; i < all.length; ++i) {
             if (!cwa.isStaged(g, all[i])) {
-                unstaged.push(all[i]);
+              unstaged.push(all[i]);
             }
         }
         return unstaged;
-    }
+    };
 
     cwa.stageAction = function(g, a) {
          if (!cwa.isStaged(g, a)) {
