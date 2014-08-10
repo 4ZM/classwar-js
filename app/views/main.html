@@ -30,16 +30,16 @@
         <th style="width:10%"></th>
     </tr></thead>
     <tbody>
-        <tr ng-repeat="action in unstagedActions">
-            <td>{{action.name}}</td>
-            <td class="text-right" style="width:10%">{{action.effort}}</td>
-            <td class="text-right" style="width:10%">{{action.cost}}</td>
-            <td class="text-right" style="width:10%">
-                <a href ng-click="stageAction(action)">
-                    <i class="glyphicon glyphicon-plus"></i>
-                </a>
-            </td>
-        </tr>
+      <tr ng-repeat="action in unstagedActions">
+        <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
+        <td class="text-right" style="width:10%">{{action.effort}}</td>
+        <td class="text-right" style="width:10%">{{action.cost}}</td>
+        <td class="text-right" style="width:10%">
+          <a href ng-click="stageAction(action)">
+            <i class="glyphicon glyphicon-plus"></i>
+          </a>
+        </td>
+      </tr>
     </tbody>
 </table>
 </div>
@@ -53,7 +53,7 @@
     </tr></thead>
     <tbody>
         <tr ng-repeat="action in stagedActions">
-            <td>{{action.name}}</td>
+        <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
             <td class="text-right" style="width:10%">{{action.effort}}</td>
             <td class="text-right" style="width:10%">{{action.cost}}</td>
             <td class="text-right" style="width:10%">

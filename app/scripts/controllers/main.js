@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('classwarApp')
-  .controller('ActionsCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope) {
 
     $scope.tic = function(a) {
         CLASSWAR.state = CLASSWAR.tic(CLASSWAR.state);

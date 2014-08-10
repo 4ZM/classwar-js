@@ -9,12 +9,12 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/overview.html',
-        controller: 'OverviewCtrl'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
       })
-      .when('/actions', {
-        templateUrl: 'views/actions.html',
-        controller: 'ActionsCtrl'
+      .when('/action/:actionId', {
+        templateUrl: 'views/action-details.html',
+        controller: 'ActionDetailsCtrl'
       })
       .otherwise({
         redirectTo: '/'
