@@ -21,6 +21,7 @@ angular.module('classwarApp')
     // Private impl
     var refreshStaged = function() {
       $scope.state = CLASSWAR.state;
+      $scope.digest = $scope.state.digest;
       $scope.stagedActions = CLASSWAR.ACTIONS.stagedActions($scope.state);
       $scope.unstagedActions = CLASSWAR.ACTIONS.unstagedActions($scope.state);
       $scope.stagedCost = CLASSWAR.ACTIONS.stagedCost($scope.state);

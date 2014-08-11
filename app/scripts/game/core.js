@@ -37,6 +37,9 @@ var CLASSWAR = (function (cw) {
   cw.tic = function(g) {
     var a;
 
+    // Clear earlier messages
+    g.digest = [];
+
     console.log('Day: ' + g.day);
 
     // Commit the staged actions

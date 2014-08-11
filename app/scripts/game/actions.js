@@ -68,10 +68,12 @@ var CLASSWAR = (function (cw) {
       op: function(g, a) {
         // First day
         if (g.day === a.startDay) {
+          g.digest.push('The online antifa campaign starts');
           g.fascists.conflict = cwa.capLevel(g.fascists.conflict + 0.01);
         }
 
         // Every day
+        g.digest.push('The online antifa campaign is running');
         g.recruitable += 1.0;
         g.fascists.power = cwa.capLevel(g.fascists.power - 0.005);
         return g;
@@ -86,6 +88,7 @@ var CLASSWAR = (function (cw) {
       op: function(g, a) {
         g.recruitable += 1.0;
         g.money += 5000;
+        g.digest.push('Your support party was awesome and earned you $' + 5000);
         return g;
       }
     });
