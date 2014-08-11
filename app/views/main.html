@@ -18,26 +18,26 @@
 
 <div class="row">
   <div class="col-md-2">Recruitable:</div>
-  <div class="col-md-1">{{state.recruitable}}</div>
+  <div class="col-md-1">{{state.recruitable|number}}</div>
   <div class="col-md-2">Org. workers:</div>
-  <div class="col-md-1">{{state.union}}</div>
+  <div class="col-md-1">{{state.union|number}}</div>
   <div class="col-md-2">Repression:</div>
-  <div class="col-md-1">{{state.repression}}</div>
+  <div class="col-md-1">{{state.repression|number}}</div>
   <div class="col-md-2">Climate:</div>
-  <div class="col-md-1">{{state.climate}}</div>
+  <div class="col-md-1">{{state.climate|number}}</div>
 </div>
 
 <hr />
 
 <div class="row">
   <div class="col-md-2">FA Morale:</div>
-  <div class="col-md-1">{{state.fascists.morale}}</div>
+  <div class="col-md-1">{{state.fascists.morale|number}}</div>
   <div class="col-md-2">FA Conflict:</div>
-  <div class="col-md-1">{{state.fascists.conflict}}</div>
+  <div class="col-md-1">{{state.fascists.conflict|number}}</div>
   <div class="col-md-2">FA Power:</div>
-  <div class="col-md-1">{{state.fascists.power}}</div>
+  <div class="col-md-1">{{state.fascists.power|number}}</div>
   <div class="col-md-2">CAP Power:</div>
-  <div class="col-md-1">{{state.capitalists.power}}</div>
+  <div class="col-md-1">{{state.capitalists.power|number}}</div>
 </div>
 
 <hr />
@@ -56,8 +56,8 @@
       <tbody>
         <tr ng-repeat="action in unstagedActions">
           <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
-          <td class="text-right" style="width:10%">{{action.effort}}</td>
-          <td class="text-right" style="width:10%">{{action.cost}}</td>
+          <td class="text-right" style="width:10%">{{action.effort|number}}</td>
+          <td class="text-right" style="width:10%">{{action.cost|number}}</td>
           <td class="text-right" style="width:10%">
             <a href ng-click="stageAction(action)">
               <i class="glyphicon glyphicon-plus"></i>
