@@ -35,14 +35,64 @@ var CLASSWAR = (function (cw) {
     });
 
     cwa.allActions.push({
-      id : 'demo',
-      name: 'Demo',
-      effort: 20,
+      id : 'antifa-demo',
+      name : 'Anti-Fascist Manifestation',
+      effort: 5,
       op: function(g, a) {
-        console.log('Running Demo action');
+        g.recruitable += 3.0;
+        g.fascists.power = cwa.capLevel(g.fascists.power - 0.02);
+        g.fascists.conflict = cwa.capLevel(g.fascists.conflict + 0.01);
+        g.fascists.morale = cwa.capLevel(g.fascists.morale - 0.01);
         return g;
       }
     });
+
+    cwa.allActions.push({
+      id : 'anticap-demo',
+      name: 'Anti-Capitalist Protest',
+      effort: 5,
+      op: function(g, a) {
+        g.recruitable += 3.0;
+        g.capitalists.power = cwa.capLevel(g.capitalists.power - 0.02);
+        g.climate = cwa.capLevel(g.climate + 0.01);
+        return g;
+      }
+    });
+
+    cwa.allActions.push({
+      id : 'antifa-online',
+      name: 'Online Anti-Fascist Campaign',
+      effort: 2,
+      cost: 500,
+      duration: 5,
+      op: function(g, a) {
+        // First day
+        if (g.day === a.startDay) {
+          g.fascists.conflict = cwa.capLevel(g.fascists.conflict + 0.01);
+        }
+
+        // Every day
+        g.recruitable += 1.0;
+        g.fascists.power = cwa.capLevel(g.fascists.power - 0.005);
+        return g;
+      }
+    });
+
+    cwa.allActions.push({
+      id : 'support-party',
+      name: 'Support Party',
+      effort: 5,
+      cost: 1000,
+      op: function(g, a) {
+        g.recruitable += 1.0;
+        g.money += 5000;
+        return g;
+      }
+    });
+
+    cwa.capLevel = function(v) {
+      return Math.max(0.0, Math.min(1.0, v));
+    };
 
     cwa.endDay = function(a) {
       return a.startDay + (a.duration || 1) - 1;
