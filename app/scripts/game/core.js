@@ -66,9 +66,23 @@ var CLASSWAR = (function (cw) {
     }
     g.runningActions = keep;
 
+    // Collect moneyz
+    g.money += 5 * g.activists;
+
+    // Recruit activists
+    var space = cw.activistCapacity(g) - g.activists;
+    var recruit = Math.min(space, g.recruitable); // Recruit as many as possible
+    g.activists += recruit;
+    g.recruitable -= recruit;
+    g.recruitable *= 0.8; // Remove some recruitable if they aren't recruited
+
     // Advance day
     g.day = g.day + 1;
     return g;
+  };
+
+  cw.activistCapacity = function(g) {
+    return 10;
   };
 
   return cw;
