@@ -1,74 +1,76 @@
 <div class="row text-center">
-  <button ng-click="tic()" class="btn btn-success">TIC {{state.day}}</button>
+  <button ng-click="tic()" ng-disabledq="overstaged" class="btn btn-success">TIC {{state.day}}</button>
 </div>
 <hr/>
 
 <div class="row">
-    <div ng-class="state.activists - stagedEffort < 0 ? 'text-danger' : 'text-default'" class="col-md-3">
-        Activists: {{state.activists - stagedEffort|number}}
-    </div>
-    <div ng-class="state.money - stagedCost < 0 ? 'text-danger' : 'text-default'" class="col-md-3">
-        Money: {{state.money - stagedCost|number}}
-    </div>
-    <div class="col-md-3">
-        Staged Effort: {{stagedEffort|number}}
-    </div>
-    <div class="col-md-3">
-        Staged Money: {{stagedCost|number}}
-    </div>
+  <div ng-class="overstagedEffort ? 'text-danger' : 'text-default'" class="col-md-3">
+    Activists: {{state.activists - stagedEffort|number}}
+  </div>
+  <div ng-class="overstagedCost ? 'text-danger' : 'text-default'" class="col-md-3">
+    Money: {{state.money - stagedCost|number}}
+  </div>
+  <div class="col-md-3">
+    Staged Effort: {{stagedEffort|number}}
+  </div>
+  <div class="col-md-3">
+    Staged Money: {{stagedCost|number}}
+  </div>
 </div>
 
 <hr />
 
 <div class="row">
-<div class="col-md-6">
-<table class="table table-hover">
-    <thead><tr>
-        <th>Action</th>
-        <th style="width:10%">Activists</th>
-        <th style="width:10%">Moneyz</th>
-        <th style="width:10%"></th>
-    </tr></thead>
-    <tbody>
-      <tr ng-repeat="action in unstagedActions">
-        <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
-        <td class="text-right" style="width:10%">{{action.effort}}</td>
-        <td class="text-right" style="width:10%">{{action.cost}}</td>
-        <td class="text-right" style="width:10%">
-          <a href ng-click="stageAction(action)">
-            <i class="glyphicon glyphicon-plus"></i>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-</table>
-</div>
-<div class="col-md-6">
-<table class="table table-hover">
-    <thead><tr>
-        <th>Staged Action</th>
-        <th style="width:10%">Activists</th>
-        <th style="width:10%">Moneyz</th>
-        <th style="width:10%"></th>
-    </tr></thead>
-    <tbody>
-        <tr ng-repeat="action in stagedActions">
-        <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
-            <td class="text-right" style="width:10%">{{action.effort}}</td>
-            <td class="text-right" style="width:10%">{{action.cost}}</td>
-            <td class="text-right" style="width:10%">
-                <a href ng-click="unstageAction(action)">
-                    <i class="glyphicon glyphicon-minus"></i>
-                </a>
-            </td>
+  <div class="col-md-6">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th style="width:10%">Activists</th>
+          <th style="width:10%">Moneyz</th>
+          <th style="width:10%"></th>
         </tr>
-    </tbody>
-    <tfoot class="small" ng-show="stagedActions.length > 0"><tr>
-        <th>Sum</th>
-        <th class="text-right" style="width:10%">{{stagedEffort|number}}</th>
-        <th class="text-right" style="width:10%">{{stagedCost|number}}</th>
-        <th style="width:10%"></th>
-    </tr></tfoot>
-</table>
-</div>
+      </thead>
+      <tbody>
+        <tr ng-repeat="action in unstagedActions">
+          <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
+          <td class="text-right" style="width:10%">{{action.effort}}</td>
+          <td class="text-right" style="width:10%">{{action.cost}}</td>
+          <td class="text-right" style="width:10%">
+            <a href ng-click="stageAction(action)">
+              <i class="glyphicon glyphicon-plus"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-hover">
+      <thead><tr>
+          <th>Staged Action</th>
+          <th style="width:10%">Activists</th>
+          <th style="width:10%">Moneyz</th>
+          <th style="width:10%"></th>
+      </tr></thead>
+      <tbody>
+        <tr ng-repeat="action in stagedActions">
+          <td><a href="#/action/{{action.id}}">{{action.name}}</a></td>
+          <td class="text-right" style="width:10%">{{action.effort}}</td>
+          <td class="text-right" style="width:10%">{{action.cost}}</td>
+          <td class="text-right" style="width:10%">
+            <a href ng-click="unstageAction(action)">
+              <i class="glyphicon glyphicon-minus"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="small" ng-show="stagedActions.length > 0"><tr>
+          <th>Sum</th>
+          <th class="text-right" style="width:10%">{{stagedEffort|number}}</th>
+          <th class="text-right" style="width:10%">{{stagedCost|number}}</th>
+          <th style="width:10%"></th>
+      </tr></tfoot>
+    </table>
+  </div>
 </div>

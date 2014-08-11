@@ -20,11 +20,14 @@ angular.module('classwarApp')
 
     // Private impl
     var refreshStaged = function() {
-        $scope.state = CLASSWAR.state;
-        $scope.stagedActions = CLASSWAR.ACTIONS.stagedActions($scope.state);
-        $scope.unstagedActions = CLASSWAR.ACTIONS.unstagedActions($scope.state);
-        $scope.stagedCost = CLASSWAR.ACTIONS.stagedCost($scope.state);
-        $scope.stagedEffort = CLASSWAR.ACTIONS.stagedEffort($scope.state);
+      $scope.state = CLASSWAR.state;
+      $scope.stagedActions = CLASSWAR.ACTIONS.stagedActions($scope.state);
+      $scope.unstagedActions = CLASSWAR.ACTIONS.unstagedActions($scope.state);
+      $scope.stagedCost = CLASSWAR.ACTIONS.stagedCost($scope.state);
+      $scope.stagedEffort = CLASSWAR.ACTIONS.stagedEffort($scope.state);
+      $scope.overstagedEffort = $scope.state.activists < $scope.stagedEffort;
+      $scope.overstagedCost = $scope.state.money < $scope.stagedCost;
+      $scope.overstaged = $scope.overstagedEffort || $scope.overstagedCost;
     };
 
     // Controller init
