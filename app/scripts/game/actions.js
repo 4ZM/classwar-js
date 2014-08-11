@@ -1,10 +1,6 @@
 var CLASSWAR = (function (cw) {
   var ACTIONS = (function (cwa) {
 
-    cwa.endDay = function(a) {
-      return a.startDay + (a.duration || 1) - 1;
-    };
-
     var flyers = {
       id : "flyers",
       name: "Flyers",
@@ -40,6 +36,16 @@ var CLASSWAR = (function (cw) {
         console.log("Running Demo action");
         return g;
       }
+    };
+
+    cwa.allActions = function() {
+      return [flyers,
+              stickers,
+              demo];
+    };
+
+    cwa.endDay = function(a) {
+      return a.startDay + (a.duration || 1) - 1;
     };
 
     cwa.isStaged = function(g, a) {
@@ -90,12 +96,6 @@ var CLASSWAR = (function (cw) {
         acc += g.stagedActions[i].effort || 0;
       }
       return acc;
-    };
-
-    cwa.allActions = function() {
-      return [flyers,
-              stickers,
-              demo];
     };
 
     cwa.getAction = function(id) {
