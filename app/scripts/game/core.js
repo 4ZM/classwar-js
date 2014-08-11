@@ -1,3 +1,5 @@
+'use strict';
+
 var CLASSWAR = (function (cw) {
 
   cw.state = {
@@ -6,22 +8,24 @@ var CLASSWAR = (function (cw) {
     money: 1000,
     stagedActions: [],
     runningActions: [],
-    status: "running"
+    status: 'running'
   };
 
   cw.tic = function(g) {
-    console.log("Day: " + g.day);
+    var a;
+
+    console.log('Day: ' + g.day);
 
     // Commit the staged actions
     while (g.stagedActions.length > 0) {
-      var a = g.stagedActions.shift();
+      a = g.stagedActions.shift();
       a.startDay = g.day;
       g.money -= a.cost;
       g.runningActions.push(a);
     }
 
     // Run the actions
-    for (i = 0; i < g.runningActions.length; ++i) {
+    for (var i = 0; i < g.runningActions.length; ++i) {
       a = g.runningActions[i];
       a.op(g, a);
     }
@@ -30,8 +34,9 @@ var CLASSWAR = (function (cw) {
     var keep = [];
     while (g.runningActions.length > 0) {
       a = g.runningActions.shift();
-      if (g.day < cw.ACTIONS.endDay(a))
+      if (g.day < cw.ACTIONS.endDay(a)) {
         keep.push(a);
+      }
     }
     g.runningActions = keep;
 

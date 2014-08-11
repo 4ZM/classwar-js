@@ -3,7 +3,7 @@
 angular.module('classwarApp')
   .controller('MainCtrl', function ($scope) {
 
-    $scope.tic = function(a) {
+    $scope.tic = function() {
         CLASSWAR.state = CLASSWAR.tic(CLASSWAR.state);
         refreshStaged();
     };

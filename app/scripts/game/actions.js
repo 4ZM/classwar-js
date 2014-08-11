@@ -1,41 +1,45 @@
+'use strict';
+
 var CLASSWAR = (function (cw) {
   var ACTIONS = (function (cwa) {
 
     cwa.allActions = [];
 
     cwa.allActions.push({
-      id : "flyers",
-      name: "Flyers",
+      id : 'flyers',
+      name: 'Flyers',
       effort: 2,
       cost: 10,
       op: function(g, a) {
-        console.log("Running Flyers action");
+        console.log('Running Flyers action');
         return g;
       }
     });
 
     cwa.allActions.push({
-      id : "stickers",
-      name: "Stickers",
+      id : 'stickers',
+      name: 'Stickers',
       effort: 2,
       duration: 3,
       cost: 10,
       op: function(g, a) {
-        if (g.day === a.startDay)
-          console.log("First day");
-        console.log("Stickers running : everyday");
-        if (g.day === cwa.endDay(a))
-          console.log("Last day");
+        if (g.day === a.startDay) {
+          console.log('First day');
+        }
+        console.log('Stickers running : everyday');
+        if (g.day === cwa.endDay(a)) {
+          console.log('Last day');
+        }
         return g;
       }
     });
 
     cwa.allActions.push({
-      id : "demo",
-      name: "Demo",
+      id : 'demo',
+      name: 'Demo',
       effort: 20,
       op: function(g, a) {
-        console.log("Running Demo action");
+        console.log('Running Demo action');
         return g;
       }
     });
@@ -96,9 +100,11 @@ var CLASSWAR = (function (cw) {
 
     cwa.getAction = function(id) {
       var aa = cwa.allActions;
-      for (var i = 0; i < aa.length; ++i)
-        if (aa[i].id === id)
+      for (var i = 0; i < aa.length; ++i) {
+        if (aa[i].id === id) {
           return aa[i];
+        }
+      }
     };
 
     return cwa;
