@@ -76,10 +76,42 @@ var CLASSWAR = (function (cw) {
     g.recruitable -= recruit;
     g.recruitable *= 0.8; // Remove some recruitable if they aren't recruited
 
+    // Update opponent power
+    g.fascists.power = cw.ACTIONS.capLevel(g.fascists.power + fascistActivity(g) * 0.02);
+    g.fascists.activity = cw.ACTIONS.capLevel(g.fascists.activity - 0.005);
+    g.capitalists.power = cw.ACTIONS.capLevel(g.capitalists.power + capitalistActivity(g) * 0.02);
+
     // Advance day
     g.day = g.day + 1;
     return g;
   };
+
+  var fascistActivity = function(g) {
+
+    var FASCIST_CYCLIC_PERIOD = 100;
+    var phase = - Math.PI / 2.0; // Start at 0 and rising
+    var harmonic = Math.sin((2.0 * Math.PI * g.day) / FASCIST_CYCLIC_PERIOD + phase);
+    var cyclic = (harmonic + 1.0) / 2.0;
+
+    var CUTOFF = 0.7;
+    var powClimate = Math.pow((CUTOFF - g.climate) / CUTOFF, 2.0);
+    var climate = g.climate < CUTOFF ? powClimate : 0.0;
+
+    var conflict = g.fascists.conflict;
+    var morale = g.fascists.morale;
+
+    return 0.2 * cyclic + 0.2 * climate + 0.2 * conflict + 0.2 * morale;
+  };
+
+  var capitalistActivity = function(g) {
+    var CUTOFF = 0.3;
+    var powClimate = Math.pow((CUTOFF - g.climate) / (1.0 - CUTOFF), 2.0);
+    var climate = g.climate > CUTOFF ? powClimate : 0.0;
+
+    var invPower = 1.0 - g.capitalists.power;
+    return 0.5 * climate + 0.5 * invPower;
+  };
+
 
   cw.activistCapacity = function(g) {
     return 10;
