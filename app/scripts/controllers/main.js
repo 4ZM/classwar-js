@@ -1,11 +1,21 @@
 'use strict';
 
 angular.module('classwarApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $location, $window) {
 
     $scope.tic = function() {
-        CLASSWAR.state = CLASSWAR.tic(CLASSWAR.state);
-        refreshStaged();
+      CLASSWAR.state = CLASSWAR.tic(CLASSWAR.state);
+
+      switch(CLASSWAR.state.status) {
+      case 'fascists won':
+        $location.path('/gameover/fascists-won');
+        break;
+      case 'capitalists won':
+        $location.path('/gameover/capitalists-won');
+        break;
+      }
+
+      refreshStaged();
     };
 
     $scope.stageAction = function(a) {

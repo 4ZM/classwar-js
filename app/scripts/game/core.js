@@ -81,6 +81,14 @@ var CLASSWAR = (function (cw) {
     g.fascists.activity = cw.ACTIONS.capLevel(g.fascists.activity - 0.005);
     g.capitalists.power = cw.ACTIONS.capLevel(g.capitalists.power + capitalistActivity(g) * 0.02);
 
+    // Update game status
+    if (g.fascists.power >= 1.0) {
+      g.status = 'fascist won';
+    }
+    else if (g.capitalists.power >= 1.0) {
+       g.status = 'capitalists won';
+    }
+
     // Advance day
     g.day = g.day + 1;
     return g;

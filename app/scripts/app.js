@@ -16,6 +16,12 @@ angular
         templateUrl: 'views/action-details.html',
         controller: 'ActionDetailsCtrl'
       })
+      .when('/gameover/fascists-won', {
+        templateUrl: 'views/gameover/fascists-won.html'
+      })
+      .when('/gameover/capitalists-won', {
+        templateUrl: 'views/gameover/capitalists-won.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
