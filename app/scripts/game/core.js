@@ -3,12 +3,35 @@
 var CLASSWAR = (function (cw) {
 
   cw.state = {
-    day: 0,
-    activists: 5,
-    money: 1000,
-    stagedActions: [],
-    runningActions: [],
-    status: 'running'
+    day:                0,
+
+    activists:          5, // Number of
+    recruitable:     0.00, // Number of possible recruits
+
+    money:           1000, // $
+
+    union:           0.00, // % Organized workers
+
+    fascists: {
+      morale:         0.2, // %
+      conflict:      0.00, // %
+      power:         0.05  // %
+    },
+
+    capitalists: {
+      power:         0.90  // %
+    },
+
+    repression:      0.00, // % Police repression
+
+    climate:         0.50, // Political climate, % red (0 = deep blue)
+
+    digest:            [], // Messages for the day
+
+    stagedActions:     [],
+    runningActions:    [],
+
+    status:      'running'
   };
 
   cw.tic = function(g) {

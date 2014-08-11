@@ -1,21 +1,43 @@
 <div class="row text-center">
-  <button ng-click="tic()" ng-disabledq="overstaged" class="btn btn-success">TIC {{state.day}}</button>
+  <button ng-click="tic()" ng-disabled="overstaged" class="btn btn-success">TIC {{state.day}}</button>
 </div>
 <hr/>
 
 <div class="row">
-  <div ng-class="overstagedEffort ? 'text-danger' : 'text-default'" class="col-md-3">
-    Activists: {{state.activists - stagedEffort|number}}
-  </div>
-  <div ng-class="overstagedCost ? 'text-danger' : 'text-default'" class="col-md-3">
-    Money: {{state.money - stagedCost|number}}
-  </div>
-  <div class="col-md-3">
-    Staged Effort: {{stagedEffort|number}}
-  </div>
-  <div class="col-md-3">
-    Staged Money: {{stagedCost|number}}
-  </div>
+  <div class="col-md-2">Activists:</div>
+  <div ng-class="overstagedEffort ? 'text-danger' : 'text-default'" class="col-md-1">{{state.activists - stagedEffort|number}}</div>
+  <div class="col-md-2">Money:</div>
+  <div ng-class="overstagedCost ? 'text-danger' : 'text-default'" class="col-md-1">{{state.money - stagedCost|number}}</div>
+  <div class="col-md-2">Stgd Effort:</div>
+  <div class="col-md-1">{{stagedEffort|number}}</div>
+  <div class="col-md-2">Stgd Money:</div>
+  <div class="col-md-1">{{stagedCost|number}}</div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-2">Recruitable:</div>
+  <div class="col-md-1">{{state.recruitable}}</div>
+  <div class="col-md-2">Org. workers:</div>
+  <div class="col-md-1">{{state.union}}</div>
+  <div class="col-md-2">Repression:</div>
+  <div class="col-md-1">{{state.repression}}</div>
+  <div class="col-md-2">Climate:</div>
+  <div class="col-md-1">{{state.climate}}</div>
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-2">FA Morale:</div>
+  <div class="col-md-1">{{state.fascists.morale}}</div>
+  <div class="col-md-2">FA Conflict:</div>
+  <div class="col-md-1">{{state.fascists.conflict}}</div>
+  <div class="col-md-2">FA Power:</div>
+  <div class="col-md-1">{{state.fascists.power}}</div>
+  <div class="col-md-2">CAP Power:</div>
+  <div class="col-md-1">{{state.capitalists.power}}</div>
 </div>
 
 <hr />
