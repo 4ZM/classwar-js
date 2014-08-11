@@ -1,7 +1,9 @@
 var CLASSWAR = (function (cw) {
   var ACTIONS = (function (cwa) {
 
-    var flyers = {
+    cwa.allActions = [];
+
+    cwa.allActions.push({
       id : "flyers",
       name: "Flyers",
       effort: 2,
@@ -10,9 +12,9 @@ var CLASSWAR = (function (cw) {
         console.log("Running Flyers action");
         return g;
       }
-    };
+    });
 
-    var stickers = {
+    cwa.allActions.push({
       id : "stickers",
       name: "Stickers",
       effort: 2,
@@ -26,9 +28,9 @@ var CLASSWAR = (function (cw) {
           console.log("Last day");
         return g;
       }
-    };
+    });
 
-    var demo = {
+    cwa.allActions.push({
       id : "demo",
       name: "Demo",
       effort: 20,
@@ -36,13 +38,7 @@ var CLASSWAR = (function (cw) {
         console.log("Running Demo action");
         return g;
       }
-    };
-
-    cwa.allActions = function() {
-      return [flyers,
-              stickers,
-              demo];
-    };
+    });
 
     cwa.endDay = function(a) {
       return a.startDay + (a.duration || 1) - 1;
@@ -58,7 +54,7 @@ var CLASSWAR = (function (cw) {
 
     cwa.unstagedActions = function(g) {
       var unstaged = [];
-      var all = cwa.allActions();
+      var all = cwa.allActions;
       for (var i = 0; i < all.length; ++i) {
         if (!cwa.isStaged(g, all[i])) {
           unstaged.push(all[i]);
@@ -99,7 +95,7 @@ var CLASSWAR = (function (cw) {
     };
 
     cwa.getAction = function(id) {
-      var aa = cwa.allActions();
+      var aa = cwa.allActions;
       for (var i = 0; i < aa.length; ++i)
         if (aa[i].id === id)
           return aa[i];
