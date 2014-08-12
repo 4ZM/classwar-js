@@ -1,8 +1,8 @@
 'use strict';
 
-angular
-  .module('classwarApp')
-  .factory('eventsService', function(actionsService) {
+angular.module('game.events', ['game.state'])
+  .factory('EventService', function(GameStateService) {
+    var cws = GameStateService; // Short alias
 
     var allEvents = [];
 
@@ -10,11 +10,11 @@ angular
       id : 'fascists-flyers',
       desc: 'Fascists handout flyers',
       prob: function(g) {
-        return Math.min(0.5, cw.fascistActivity(g));
+        return Math.min(0.5, cws.fascistActivity(g));
       },
       op: function(g, e) {
         g.digest.push('Fascists handout flyers');
-        g.fascists.power = cw.capLevel(g.fascists.power + 0.01);
+        g.fascists.power = cws.capLevel(g.fascists.power + 0.01);
         return g;
       }
     });

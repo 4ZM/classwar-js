@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('classwarApp')
-  .controller('ActionDetailsCtrl', function ($scope, $routeParams, actionsService) {
+  .controller('ActionDetailsCtrl', function ($scope, $routeParams, ActionService) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -9,7 +9,7 @@ angular.module('classwarApp')
     ];
     $scope.actionId = $routeParams.actionId;
 
-    var action = actionsService.getAction($routeParams.actionId);
+    var action = ActionService.getAction($routeParams.actionId);
     $scope.name = action.name;
     $scope.effort = action.effort;
     $scope.cost = action.cost;

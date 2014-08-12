@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('classwarApp', [
+  .module('classwarApp', ['game',
     'ngResource',
     'ngRoute',
     'ngSanitize'
@@ -9,18 +9,18 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'play/play.tpl.html',
+        controller: 'PlayCtrl'
       })
       .when('/action/:actionId', {
-        templateUrl: 'views/action-details.html',
+        templateUrl: 'action-details/action-details.tpl.html',
         controller: 'ActionDetailsCtrl'
       })
       .when('/gameover/fascists-won', {
-        templateUrl: 'views/gameover/fascists-won.html'
+        templateUrl: 'gameover/fascists-won.tpl.html'
       })
       .when('/gameover/capitalists-won', {
-        templateUrl: 'views/gameover/capitalists-won.html'
+        templateUrl: 'gameover/capitalists-won.tpl.html'
       })
       .otherwise({
         redirectTo: '/'

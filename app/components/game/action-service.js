@@ -1,12 +1,9 @@
-'use strict';
 
-angular
-  .module('classwarApp')
-  .factory('actionsService', function() {
 
-      var capLevel = function(v) {
-        return Math.max(0.0, Math.min(1.0, v));
-      };
+angular.module('game.actions', ['game.state'])
+  .factory('ActionService', function(GameStateService) {
+    var cws = GameStateService; // Short alias
+
 
       var endDay = function(a) {
         return a.startDay + (a.duration || 1) - 1;
@@ -49,9 +46,9 @@ angular
       effort: 5,
       op: function(g, a) {
         g.recruitable += 3.0;
-        g.fascists.power = capLevel(g.fascists.power - 0.02);
-        g.fascists.conflict = capLevel(g.fascists.conflict + 0.01);
-        g.fascists.morale = capLevel(g.fascists.morale - 0.01);
+        g.fascists.power = cws.capLevel(g.fascists.power - 0.02);
+        g.fascists.conflict = cws.capLevel(g.fascists.conflict + 0.01);
+        g.fascists.morale = cws.capLevel(g.fascists.morale - 0.01);
         return g;
       }
     });
@@ -62,8 +59,8 @@ angular
       effort: 5,
       op: function(g, a) {
         g.recruitable += 3.0;
-        g.capitalists.power = capLevel(g.capitalists.power - 0.02);
-        g.climate = capLevel(g.climate + 0.01);
+        g.capitalists.power = cws.capLevel(g.capitalists.power - 0.02);
+        g.climate = cws.capLevel(g.climate + 0.01);
         return g;
       }
     });
@@ -78,13 +75,13 @@ angular
         // First day
         if (g.day === a.startDay) {
           g.digest.push('The online antifa campaign starts');
-          g.fascists.conflict = capLevel(g.fascists.conflict + 0.01);
+          g.fascists.conflict = cws.capLevel(g.fascists.conflict + 0.01);
         }
 
         // Every day
         g.digest.push('The online antifa campaign is running');
         g.recruitable += 1.0;
-        g.fascists.power = capLevel(g.fascists.power - 0.005);
+        g.fascists.power = cws.capLevel(g.fascists.power - 0.005);
         return g;
       }
     });
@@ -103,8 +100,6 @@ angular
     });
 
     return {
-      capLevel: capLevel,
-
       endDay: endDay,
 
       isStaged: function(g, a) {
