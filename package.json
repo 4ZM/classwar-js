@@ -1,6 +1,11 @@
 {
   "name": "classwar",
   "version": "0.0.0",
+  "description": "A revolutionary game!",
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/4ZM/classwar-js.git"
+  },
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.1",
