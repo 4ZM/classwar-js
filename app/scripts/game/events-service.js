@@ -1,11 +1,12 @@
 'use strict';
 
-var CLASSWAR = (function (cw) {
-  var EVENTS = (function (cwe) {
+angular
+  .module('classwarApp')
+  .factory('eventsService', function(actionsService) {
 
-    cwe.allEvents = [];
+    var allEvents = [];
 
-    cwe.allEvents.push({
+    allEvents.push({
       id : 'fascists-flyers',
       desc: 'Fascists handout flyers',
       prob: function(g) {
@@ -18,17 +19,16 @@ var CLASSWAR = (function (cw) {
       }
     });
 
-    cwe.getEvent = function(id) {
-      var ae = cwe.allEvents;
-      for (var i = 0; i < ae.length; ++i) {
-        if (ae[i].id === id) {
-          return ae[i];
+    return {
+      allEvents: allEvents,
+
+      getEvent: function(id) {
+        var ae = cwe.allEvents;
+        for (var i = 0; i < ae.length; ++i) {
+          if (ae[i].id === id) {
+            return ae[i];
+          }
         }
       }
     };
-
-    return cwe;
-  }(EVENTS || {}));
-  cw.EVENTS = EVENTS;
-  return cw;
-}(CLASSWAR || {}));
+  });
