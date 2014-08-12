@@ -13,7 +13,7 @@ var CLASSWAR = (function (cw) {
     union:           0.00, // % Organized workers
 
     fascists: {
-      morale:         0.2, // %
+      morale:        0.20, // %
       conflict:      0.00, // %
       power:         0.05  // %
     },
