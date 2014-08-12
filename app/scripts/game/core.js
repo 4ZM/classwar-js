@@ -46,7 +46,7 @@ var CLASSWAR = (function (cw) {
     while (g.stagedActions.length > 0) {
       a = g.stagedActions.shift();
       a.startDay = g.day;
-      g.money -= a.cost;
+      g.money -= a.cost || 0;
       g.runningActions.push(a);
     }
 
