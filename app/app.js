@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('classwarApp', ['game',
+  .module('classwarApp', ['game','ticker',
     'ngResource',
     'ngRoute',
     'ngSanitize'
